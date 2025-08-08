@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 from database.models.cliente import Cliente
+from flask_bcrypt import Bcrypt
 
 
 cliente_route = Blueprint('cliente', __name__)
@@ -69,6 +70,7 @@ def atualizar_cliente(cliente_id):
     cliente_editado = Cliente.get_by_id(cliente_id)
     cliente_editado.nome = data['nome']
     cliente_editado.email = data['email']
+    cliente_editado.senha = data['senha'],
     cliente_editado.save()
 
     return render_template('item_cliente.html', cliente=cliente_editado)
