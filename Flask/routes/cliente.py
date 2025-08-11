@@ -1,7 +1,6 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request 
 from database.models.cliente import Cliente
-from flask_bcrypt import Bcrypt
-
+from cryptografy import bcrypt
 
 cliente_route = Blueprint('cliente', __name__)
 
@@ -30,9 +29,14 @@ def inserir_cliente():
 
     data = request.json
 
+    senha_sem_hash = data['senha']
+
+    senha_hash = bcrypt.generate_password_hash(senha_sem_hash).decode('utf-8')
+
     novo_usuario = Cliente.create(
         nome = data['nome'],
         email = data['email'],
+        senha = senha_hash,
     )
 
     return render_template('item_cliente.html', cliente=novo_usuario )

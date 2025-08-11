@@ -25,10 +25,10 @@
         <input type="text" class="form-control" name="email" {% if cliente  %}value="{{cliente.email}}"{% endif %}>
     </div>
 
-    <!-- <div class="mb-3">
+    <div class="mb-3">
         <label for="senha">Senha:</label>
-        <input type="password" class="form-control"  id="senha" name="senha" required {% if cliente  %}value="{{cliente.senha_hash}}"{% endif %}>
-    </div> -->
+        <input type="password" class="form-control"  id="senha" name="senha" required {% if cliente  %}value="{{cliente.senha}}"{% endif %}>
+    </div>
 
   <button type="submit" class="btn btn-primary">
     {% if cliente %}Salvar{% else %}Criar{% endif %}
